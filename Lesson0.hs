@@ -7,6 +7,10 @@ powerset x = filterM (\_->[True,False]) x
 (|>) :: a -> (a -> b) -> b
 (|>) = flip ($)
 
+-- To explain that function is first-class data type
+list10 :: (Num a) => [(a -> a)]
+list10 = [(+3), (*5), (negate)]
+
 -- To explain about recursion
 myMap :: (a -> b) -> [a] -> [b]
 myMap _ [] = []
@@ -24,10 +28,16 @@ myLength :: [a] -> Int
 myLength [] = 0
 myLength (x:xs) = 1 + (myLength xs)
 
+myFold :: (b -> a -> b) -> b -> [a] -> b
+myFold _ acc [] = acc
+myFold f acc (x:xs) = myFold f (f acc x) xs
 
--- To explain that function is first-class data type
-list11 :: (Num a) => [(a -> a)]
-list11 = [(+3), (*5), (negate)]
+-- With lambda expression
+list11 :: [Int]
+list11 = map (\x -> x + 3) [2,3,4]
+
+myReverse :: [a] -> [a]
+myReverse = foldl (\acc x -> x:acc) []
 
 -- To explain about lazy evaluation
 list20 :: [a]
