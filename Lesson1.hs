@@ -99,20 +99,3 @@ symbols = [("x", True), ("y", False), ("z", True)]
 
 exp1 :: PropositionalLogic
 exp1 = And ((Or (Symbol "x", And(Not(Symbol "y"), Symbol "z"))),Symbol "y")
-
--- to explain about typeclass
-
-class Default a where
-    getDefault :: a
-
-instance Default Int where
-    getDefault = 0
-
-instance (Default a) => Default [a] where
-    getDefault = []
-    
-instance (Default a) => Default (Maybe a) where
-    getDefault = Just getDefault
-
-instance (Default b) => Default (Either a b) where
-    getDefault = Right getDefault

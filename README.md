@@ -10,6 +10,7 @@
   - What is syntatic sugar?
 
 - 1: About data structure
+
   - Basic enums
   - Discriminated union
   - Polymorphic types
@@ -17,3 +18,11 @@
     - Why use monad? (briefly)
   - Recursively defined types
   - What is typeclass?
+
+- 2: About type system
+  - Haskell's type system
+    - What is kind?
+    - What is type wrapper?
+    - What is the difference between type constructor and data constructor?
+  - What is functor?
+  - What is applicative?
