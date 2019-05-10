@@ -20,9 +20,13 @@
   - What is typeclass?
 
 - 2: About type system
+
   - Haskell's type system
     - What is kind?
     - What is type wrapper?
     - What is the difference between type constructor and data constructor?
   - What is functor?
   - What is applicative?
+
+- 3: About Monad
+  - What is Monad?
