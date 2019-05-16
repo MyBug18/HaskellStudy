@@ -29,4 +29,11 @@
   - What is applicative?
 
 - 3: About Monad
+
   - What is Monad?
+  - Brief introduction about Maybe monad, Either monad, and List monad
+
+- 4: More about Monad
+  - Haskell's program structure
+  - IO monad
+  - Why use monad?

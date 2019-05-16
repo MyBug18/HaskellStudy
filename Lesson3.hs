@@ -79,3 +79,49 @@ routine1 = [birdsLand L 3, birdsLand R 5, birdsLand L 5]
 
 routine2 :: Routine
 routine2 = [birdsLand L 3, birdsLand R 4, banana]
+
+--About List Monad
+list1 :: [(Int, Int)]
+list1 = [1,2,3] >>= \x -> [4,5,6] >>= \y -> return (x, y)
+
+list2 :: [(Int, Int)]
+list2 = do
+    x <- [1,2,3]
+    y <- [4,5,6]
+    return (x, y)
+
+list3 :: [(Int, Int)]
+list3 = [(x, y) | x <- [1,2,3], y <- [4,5,6]]
+
+type KnightLocation = (Int, Int)
+type KnightPath = [KnightLocation]
+
+(|>) :: a -> (a -> b) -> b
+(|>) = flip ($)
+
+makeAdvance :: KnightLocation -> KnightPath
+makeAdvance loc = loc |> makePath |> filterOutside where
+    makePath :: KnightLocation -> KnightPath
+    makePath (x, y) = 
+        [(x + 1, y + 2), (x + 1, y - 2), (x - 1, y + 2), (x - 1, y - 2)
+        ,(x + 2, y + 1), (x + 2, y - 1), (x - 2, y + 1), (x - 2, y - 1)]
+    filterOutside :: KnightPath -> KnightPath
+    filterOutside = filter isOnboard where
+        isOnboard :: KnightLocation -> Bool
+        isOnboard (x, y) = x `elem` [1..8] && y `elem` [1..8]
+
+removeDuplicates :: (Eq a) => [a] -> [a]
+removeDuplicates [] = []
+removeDuplicates lst = check lst [] where
+    check :: (Eq a) => [a] -> [a] -> [a]
+    check [] _ = []
+    check (x:xs) checked = if x `elem` checked then check xs checked else x:(check xs (x:checked))
+
+startLoc :: (Int, Int)
+startLoc = (4, 5)
+
+makeAdvanceNtimes :: KnightLocation -> Int -> KnightPath
+makeAdvanceNtimes loc n = iterNtimes loc n |> removeDuplicates where
+    iterNtimes :: KnightLocation -> Int -> KnightPath
+    iterNtimes loc 0 = [loc]
+    iterNtimes loc n = iterNtimes loc (n - 1) >>= makeAdvance
