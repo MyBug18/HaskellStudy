@@ -8,7 +8,6 @@ import Data.Maybe (isJust)
 type Problem = String -- The goal is to identify this string.
 type Status = [Maybe Char] -- List of which characters are figured out.
 type Checked = [Char] -- Characters users already tried.
-type Count = Int -- Counts attempts.
 
 data Puzzle = Puzzle Problem Status Checked deriving (Eq)
 
@@ -45,7 +44,7 @@ getOneInput :: IO Char
 getOneInput = do
     input <- getLine
     case input of
-        x:[] -> return x
+        x:[] -> if elem x ['a'..'z'] then return x else putStrLn "Invalid input. Try again." >> getOneInput
         _ -> putStrLn "Invalid input. Try again." >> getOneInput
 
 handleGuess :: Puzzle -> Char -> IO Puzzle
