@@ -34,6 +34,10 @@
   - Brief introduction about Maybe monad, Either monad, and List monad
 
 - 4: More about Monad
-  - Haskell's program structure
-  - IO monad
-  - Why use monad?
+  - 4-1
+    - Haskell's program structure
+    - IO monad
+    - Why use monad?
+  - 4-2
+    - Practice time!
+    - Let's make Haskell Hangman Game!
