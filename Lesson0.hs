@@ -2,7 +2,7 @@ import Control.Monad
 
 -- One line to blow your mind
 powerset :: [a] -> [[a]]
-powerset x = filterM (\_->[True,False]) x
+powerset = filterM (\_->[True,False])
 
 (|>) :: a -> (a -> b) -> b
 (|>) = flip ($)
@@ -10,6 +10,17 @@ powerset x = filterM (\_->[True,False]) x
 -- To explain that function is first-class data type
 list10 :: (Num a) => [(a -> a)]
 list10 = [(+3), (*5), (negate)]
+
+-- To explain about Currying
+
+myAdd :: Int -> Int -> Int
+myAdd = (+)
+
+myAdd3 :: Int -> Int
+myAdd3 = (+) 3
+
+my3Add5 :: Int
+my3Add5 = (+) 3 5
 
 -- To explain about recursion
 myMap :: (a -> b) -> [a] -> [b]
@@ -78,3 +89,11 @@ list33 = do
     x <- [1,2,3]
     y <- [4,5,6]
     return (x, y)
+
+-- Putting (almost) everything together
+
+list40 :: [Int]
+list40 =
+    let funcList :: [Int -> Int -> Int]
+        funcList = [(-), (+), \x y -> x * x + y * y] in
+    map (\f -> zipWith f (repeat 4) [1..]) funcList |> map (take 5) |> concat

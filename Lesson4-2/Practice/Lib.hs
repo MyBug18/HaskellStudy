@@ -12,7 +12,7 @@ type Checked = [Char] -- Characters users already tried.
 data Puzzle = Puzzle Problem Status Checked deriving (Eq)
 
 instance Show Puzzle where
-    show p = printPuzzle p
+    show = printPuzzle
 
 printPuzzle :: Puzzle -> String
 printPuzzle (Puzzle _ status checked) = 
@@ -34,7 +34,7 @@ getRandomWord = do
 --     where N denotes length of the problem string.
 -- The part <Checked> should be an empty list since we have not tried anything.
 getStartingPuzzle :: IO Puzzle
-getStartingPuzzle = return (Puzzle [] [] [])
+getStartingPuzzle = getRandomWord >>= \x -> return $ Puzzle x (take (length x) (repeat Nothing)) []
 
 runGame :: Puzzle -> IO ()
 runGame puzzle = forever $ do
@@ -51,7 +51,11 @@ runGame puzzle = forever $ do
 -- If the string contains more than one letter, or is not character, 
 --     then it's an error, so you must handle it.
 getOneInput :: IO Char
-getOneInput = return 'a'
+getOneInput = do
+    input <- getLine -- input :: String
+    case input of
+        x:[] -> if elem x ['a'..'z'] then return x else print "Wrong Input!" >> getOneInput
+        _ -> print "Wrong Input!" >> getOneInput
 
 handleGuess :: Puzzle -> Char -> IO Puzzle
 handleGuess puzzle c = 
@@ -76,7 +80,7 @@ handleGuess puzzle c =
 -- let x4 = fillGuess x3 'j'
 -- x4 == Puzzle "java" [Just 'j', Just 'a', Nothing, Just 'a'] ['j', 'q', 'a'] -- Checked 'j' successfully.
 fillGuess :: Puzzle -> Char -> Puzzle
-fillGuess (Puzzle problem status checked) guess = Puzzle (problem status checked)
+fillGuess (Puzzle problem status checked) guess = Puzzle problem status checked
 
 
 -- These five functions are really easy, so I just implemented it.

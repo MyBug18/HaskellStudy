@@ -82,6 +82,19 @@ type SymbolValues = [(String, Bool)]
 
 data Exp = Not Exp | And (Exp, Exp) | Or (Exp, Exp) | Symbol String deriving (Eq, Show)
 
+badEval :: SymbolValues -> PropositionalLogic -> Bool
+badEval env (Symbol name) =
+    let myLookup :: String -> SymbolValues -> Bool
+        myLookup name (x:xs) = 
+            if fst x == name
+                then snd x
+                else myLookup name xs in
+    myLookup name env
+badEval env (Not exp) = not (badEval env exp)
+badEval env (And (e1, e2)) = (badEval env e1) && (badEval env e2)
+badEval env (Or (e1, e2)) = (badEval env e1) && (badEval env e2)
+
+
 eval :: SymbolValues -> PropositionalLogic -> Maybe Bool
 eval env (Symbol name) = lookup name env
 eval env (Not exp) = (eval env exp) >>= return.not
