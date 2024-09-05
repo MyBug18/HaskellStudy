@@ -109,4 +109,4 @@ askContinue = do
     case input of
         "y" -> putStrLn "Then restart!" >> getStartingPuzzle >>= runGame
         "n" -> exitSuccess
-        _ -> putStrLn "Invalid input. Try again." >> askContinue 
+        _ -> putStrLn "Invalid input. Try again." >> askContinue

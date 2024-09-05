@@ -22,8 +22,7 @@ makeTreeFromList = foldl (flip insertTree) Empty
 -- As we learned before, Functor typeclass is used for
 -- "Lifting over" the type, which means that
 -- We're drilling the type wrapper with the regular function,
--- which is not designed for the type wrapper,
--- to apply it inside the type wrapper.
+-- which is not designed for the type wrapper to apply it inside the type wrapper.
 -- For example, fmap (+3) (Just 3) evaluates to (Just 6), and fmap (+3) [1,2,3] evaluates to [4,5,6].
 
 -- Functor typeclass includes only one function, fmap.
