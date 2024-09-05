@@ -29,7 +29,8 @@ makeTreeFromList = foldl (flip insertTree) Empty
 -- Just implement this for Tree, in the following code.
 
 instance Functor Tree where
-    
+    fmap :: (a -> b) -> Tree a -> Tree b
+    fmap f x = undefined
 
 -- If the following expression evaluates to True,
 -- you have implemented it right, maybe.
