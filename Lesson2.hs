@@ -149,3 +149,4 @@ isBlind eye = if eye < 0.0 then MyLeft [EyeSightLow] else MyRight eye
 recruitSoldier :: IsWoman -> IsInsane -> Weight -> EyeSight -> MyEither Exempt Soldier
 recruitSoldier woman insane weight eye =
     pure Slave <*> isWoman woman <*> isInsane insane <*> isFat weight <*> isBlind eye
+    

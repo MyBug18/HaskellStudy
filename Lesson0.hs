@@ -12,7 +12,6 @@ list10 :: (Num a) => [(a -> a)]
 list10 = [(+3), (*5), (negate)]
 
 -- To explain about Currying
-
 myAdd :: Int -> Int -> Int
 myAdd = (+)
 
@@ -76,6 +75,8 @@ list23 = [1..]
 list24 :: [Int]
 list24 = let temp = 0 : list23 in 1 : temp
 
+fibs :: [Int]
+fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 
 -- To explain about syntatic sugar
 list31 :: [(Int, Int)]

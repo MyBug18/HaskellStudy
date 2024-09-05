@@ -75,3 +75,4 @@ main = forever $ do
             if (input == x) 
                 then putStrLn "Correct! Try again!"
                 else putStrLn "Wrong!" >> guess x
+                

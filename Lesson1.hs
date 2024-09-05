@@ -111,4 +111,4 @@ symbols :: SymbolValues
 symbols = [("x", True), ("y", False), ("z", True)]
 
 exp1 :: PropositionalLogic
-exp1 = And ((Or (Symbol "x", And(Not(Symbol "y"), Symbol "z"))),Symbol "y")
+exp1 = And ((Or (Symbol "x", And(Not(Symbol "y"), Symbol "z"))), Symbol "y")
