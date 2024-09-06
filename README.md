@@ -54,9 +54,10 @@
   - Brief introduction about Maybe monad, Either monad, and List monad
 
 - 4: More about Monad
-  - 4-0
     - State monad
     - Why use monad?
-  - 4-1
+   
+- 5: IO monad
+    - Understanding Haskell Hello World
     - Haskell's program structure
-    - IO monad
+
