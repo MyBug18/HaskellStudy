@@ -5,13 +5,15 @@
 1. Install GHCup from [official Haskell page](https://www.haskell.org/ghcup/)
    - Installation guide is in the page, including uninstallation guide.
    - Download GHC, Cabal, Haskell Language Server and Stack; Download everything you can.
+   - It is strongly recommended to install it in WSL2 environment, but Windows will do well.
 2. Download Haskell package in VSCode.
-3. Run following command in cmd, powershell, or whatever: `cabal install --lib random` to download `random` package.
+3. Run following command in cmd: `cabal install --lib random` to download `random` package.
 4. Run following command: `ghci` to run GHCi: The commandline haskell interpreter.
 5. Play with GHCi. To be more specific, try running the following commands.
    - `4 + 6`
    - `take 5 [1..]`
    - `map (+3) [1, 2, 3]`
+   - `[(x, y) | x <- [1, 2, 3], y <- [4, 5, 6]]`
    - `:t 5` -- :t is the command which prints the type of given expression.
    - `:t (+)`
    - `:t (+3)`
@@ -23,7 +25,6 @@
 ## Index
 
 - 0: What is Functional Programming?
-
   - What is the difference between statement and expression?
   - What is the meaning of first-class datatype?
   - What is lazy evaluation?
@@ -32,7 +33,6 @@
   - What is syntatic sugar?
 
 - 1: About data structure
-
   - Basic enums
   - Discriminated union
   - Polymorphic types
@@ -42,7 +42,6 @@
   - What is typeclass?
 
 - 2: About type system
-
   - Haskell's type system
     - What is kind?
     - What is type wrapper?
@@ -51,7 +50,6 @@
   - What is applicative?
 
 - 3: About Monad
-
   - What is Monad?
   - Brief introduction about Maybe monad, Either monad, and List monad
 
